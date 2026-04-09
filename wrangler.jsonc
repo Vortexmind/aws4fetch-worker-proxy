@@ -1,0 +1,28 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "s3-proxy",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-04-09",
+
+  // Non-sensitive configuration (safe to commit)
+  "vars": {
+    // AWS S3 bucket name (not the full URL, just the bucket name)
+    "S3_BUCKET": "my-private-bucket",
+
+    // AWS region where the bucket is located
+    "S3_REGION": "us-east-1",
+
+    // Enable SPA mode: serve /index.html for paths that return 404
+    // Set to "false" for traditional static site behavior
+    "SPA_MODE": "true",
+
+    // Cache-Control max-age in seconds for successful responses
+    "CACHE_MAX_AGE": "3600"
+  }
+
+  // SECRETS (set via `wrangler secret put`, never in this file):
+  //   AWS_ACCESS_KEY_ID     - IAM access key with s3:GetObject permission
+  //   AWS_SECRET_ACCESS_KEY - Corresponding secret key
+  //
+  // For local development, create a .dev.vars file (see .dev.vars.example)
+}

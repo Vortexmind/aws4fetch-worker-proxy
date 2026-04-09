@@ -1,0 +1,6 @@
+# AWS IAM credentials for S3 access
+# Copy this file to .dev.vars and fill in your values
+# NEVER commit .dev.vars to version control
+
+AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY

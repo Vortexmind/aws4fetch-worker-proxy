@@ -1,0 +1,24 @@
+{
+  "name": "aws4fetch-worker-proxy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cloudflare Worker proxy for private AWS S3 buckets using aws4fetch",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "tail": "wrangler tail"
+  },
+  "dependencies": {
+    "aws4fetch": "^1.0.20"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250327.0",
+    "typescript": "^5.7.3",
+    "wrangler": "^4.10.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
