@@ -322,7 +322,6 @@ If you can migrate data to Cloudflare R2:
 - **Zero-latency access** from Workers (same network)
 - **No credentials to manage** (bindings are automatic)
 - **S3-compatible API** for easy migration
-- **No egress fees** for data read by Workers
 
 ```jsonc
 // wrangler.jsonc with R2 binding
