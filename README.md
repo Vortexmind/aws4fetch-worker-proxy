@@ -1,23 +1,25 @@
 # AWS S3 Proxy Worker with aws4fetch
 
+> **Disclaimer:** This code is provided as a sample/template for educational and reference purposes only. It is provided "as-is" without warranty of any kind. See the [LICENSE](LICENSE) file for details. You are responsible for reviewing, testing, and adapting this code for your own use case before deploying to production.
+
 A Cloudflare Worker that proxies requests to a **private** AWS S3 bucket hosting a static web application. The bucket never needs to be made public; the Worker signs every request using AWS Signature V4 via [aws4fetch](https://github.com/mhart/aws4fetch).
 
 ## Architecture
 
 ```
-                                    ┌─────────────────────┐
-                                    │   AWS S3 Bucket     │
-                                    │   (Private)         │
-                                    │                     │
-                                    │  - Block public     │
-┌──────────┐    ┌─────────────────┐ │    access: ON       │
-│  Client  │───▶│ Cloudflare Edge │─┼──▶                  │
-│ (Browser)│◀───│                 │◀┼── - IAM policy:     │
-└──────────┘    │  - TLS          │ │    GetObject only   │
-               │  - Caching       │ │                     │
-               │  - Worker        │ └─────────────────────┘
-               │    (signs req)   │
-               └─────────────────┘
+                                        ┌─────────────────────┐
+                                        │   AWS S3 Bucket     │
+                                        │   (Private)         │
+                                        │                     │
+                                        │  - Block public     │
+┌──────────┐    ┌─────────────────┐     │    access: ON       │
+│  Client  │--->│ Cloudflare Edge │---->│                     │
+│ (Browser)│<---│                 │<----│ IAM policy:         │
+└──────────┘    │  - TLS          │     │    GetObject only   │
+                │  - Caching      │     │                     │
+                │  - Worker       │     └─────────────────────┘
+                │    (signs req)  │
+                └─────────────────┘
 ```
 
 **How it works:**
@@ -311,7 +313,7 @@ npx wrangler tail
 
 ## Alternatives
 
-If the constraint of keeping data on AWS S3 changes, consider these alternatives:
+Consider these alternatives:
 
 ### 1. Cloudflare R2 with Bindings (Recommended)
 
@@ -345,8 +347,6 @@ If authenticated signing is not required:
 - Add a bucket policy that only allows Cloudflare IP ranges
 - Use Cloudflare DNS + CDN (no Worker needed)
 - Simpler, but the bucket is technically "public"
-
-See: `output/s3-bucket-cloudflare/guide.md` in this workspace.
 
 ### 3. Workers VPC with Cloudflare Tunnel
 
@@ -393,3 +393,15 @@ return Response.redirect(signedUrl, 302);
 - [Cloudflare Secrets Store](https://developers.cloudflare.com/secrets-store/)
 - [AWS S3 REST API](https://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html)
 - [AWS Signature Version 4](https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html)
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for the full text.
+
+**This code is provided as a sample/template for educational purposes.** It is offered "as-is" without any warranty, express or implied. The authors and contributors accept no liability for any damages, security issues, or costs arising from the use of this code. You are solely responsible for:
+
+- Reviewing and understanding the code before use
+- Testing thoroughly in your own environment
+- Adapting the code to meet your specific security and compliance requirements
+- Managing your own AWS credentials and Cloudflare configuration securely
+- Any costs incurred from AWS, Cloudflare, or other services

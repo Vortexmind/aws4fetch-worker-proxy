@@ -2,7 +2,9 @@
   "name": "aws4fetch-worker-proxy",
   "version": "1.0.0",
   "private": true,
-  "description": "Cloudflare Worker proxy for private AWS S3 buckets using aws4fetch",
+  "license": "MIT",
+  "author": "Paolo Tagliaferri",
+  "description": "Cloudflare Worker proxy for private AWS S3 buckets using aws4fetch (sample/template)",
   "main": "src/index.ts",
   "scripts": {
     "dev": "wrangler dev",
