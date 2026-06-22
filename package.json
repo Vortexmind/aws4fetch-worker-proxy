@@ -16,9 +16,9 @@
     "aws4fetch": "^1.0.20"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260516.1",
+    "@cloudflare/workers-types": "^4.20260620.1",
     "typescript": "^6.0.3",
-    "wrangler": "^4.102.0"
+    "wrangler": "^4.103.0"
   },
   "engines": {
     "node": ">=18.0.0"
